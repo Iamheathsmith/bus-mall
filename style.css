@@ -1,15 +1,35 @@
 /* app styles */
 
+html {
+  text-align: center;
+}
+
 body {
-  display: block;
   width: 1000px;
-  background-color: #577f61;
+  background-color: rgb(110, 168, 82);
+  display: inline-block;
+  margin: 0px auto;
+  text-align: center;
 }
 
 header h1 {
   text-align: center;
-  font-size: 30px;
+  font-size: 50px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-family: 'Bevan', cursive;
+  text-transform: uppercase;
+  word-spacing: 10px;
 }
+
+header h2 {
+  word-spacing: 3px;
+  font-family: helvetica;
+  text-decoration: underline;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
 .image-section {
   float: left;
 }
@@ -20,9 +40,10 @@ li {
 
 #random-images li {
   float: left;
-  margin-left: 20px;
+  margin-left: 10px;
   margin-right: 20px;
   margin-top: 30px;
+  border: 4px solid rgb(12, 56, 115);
 }
 
 #random-images li:last-child {
@@ -38,11 +59,12 @@ li {
 
 .total-chart #myChart {
   text-align: center;
+
 }
 
 #myChart {
   background: white;
   display: block;
   margin: 0 auto;
-
+  visibility: hidden;
 }

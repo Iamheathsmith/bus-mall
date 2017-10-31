@@ -126,6 +126,7 @@ function clickedTotal() {
 
 
 function buildTable() {
+  chart = document.getElementById('myChart').style.visibility = 'visible';
   var labelName = [];
   for (var w = 0; w < displayedImage.length; w++) {
     labelName.push(displayedImage[w].name);
@@ -141,15 +142,15 @@ function buildTable() {
   var ctx = document.getElementById('myChart').getContext('2d');
   var chart = new Chart(ctx, {
     // The type of chart we want to create
-    type: 'bar',
+    type: 'horizontalBar',
 
     // The data for our dataset
     data: {
       labels: labelName,
       datasets: [{
         label: 'Results from Bus Mall Test',
-        backgroundColor: 'blue',
-        borderColor: 'white',
+        backgroundColor: 'rgb(12, 56, 115)',
+        borderColor: 'rgb(66, 164, 0)',
         data: dataCounts,
       }]
     },
