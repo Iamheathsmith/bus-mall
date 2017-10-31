@@ -3,6 +3,7 @@
 body {
   display: block;
   width: 1000px;
+  background-color: #577f61;
 }
 
 header h1 {
@@ -26,4 +27,22 @@ li {
 
 #random-images li:last-child {
   margin-right: 0;
+}
+
+.total-chart {
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 20px;
+  width: 960px;
+}
+
+.total-chart #myChart {
+  text-align: center;
+}
+
+#myChart {
+  background: white;
+  display: block;
+  margin: 0 auto;
+
 }
