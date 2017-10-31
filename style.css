@@ -9,14 +9,21 @@ header h1 {
   text-align: center;
   font-size: 30px;
 }
+.image-section {
+  float: left;
+}
 
-.random-images li {
+li {
+  float: left;
+}
+
+#random-images li {
   float: left;
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 30px;
 }
 
-.random-images li:last-child {
+#random-images li:last-child {
   margin-right: 0;
 }
