@@ -3,6 +3,7 @@
 var panelOne = document.getElementById('panel-1');
 var panelTwo = document.getElementById('panel-2');
 var panelThree = document.getElementById('panel-3');
+var imageUl = document.getElementById('random-images');
 
 var previousfirst;
 var previousSecond;
@@ -64,28 +65,24 @@ function compareNumbers() {
 
 function imagesToPage() {
 
-  for (var k = 0; k < 25; k++) {
-    compareNumbers();
-    var imageToShow = [];
-    imageToShow.push(displayedImage[firstImageNumber]);
-    imageToShow.push(displayedImage[secondImageNumber]);
-    imageToShow.push(displayedImage[thirdImageNumber]);
+  compareNumbers();
+  var imageToShow = [];
+  imageToShow.push(displayedImage[firstImageNumber]);
+  imageToShow.push(displayedImage[secondImageNumber]);
+  imageToShow.push(displayedImage[thirdImageNumber]);
 
-    displayedImage[firstImageNumber].imageShown++;
-    displayedImage[secondImageNumber].imageShown++;
-    displayedImage[thirdImageNumber].imageShown++;
+  displayedImage[firstImageNumber].imageShown++;
+  displayedImage[secondImageNumber].imageShown++;
+  displayedImage[thirdImageNumber].imageShown++;
 
-    // for (var j = 0; j < imageToShow.length; j++) {
-    panelOne.innerHTML = '<img src="' + imageToShow[0].location + '">';
-    panelTwo.innerHTML = '<img src="' + imageToShow[1].location + '">';
-    panelThree.innerHTML = '<img src="' + imageToShow[2].location + '">';
-
+  for (var j = 0; j < imageToShow.length; j++) {
+    var imageLi = document.createElement('li');
+    imageLi.innerHTML = '<img src="' + imageToShow[j].location + '">';
+    imageUl.appendChild(imageLi);
+    console.log(imageLi);
+    console.log(imageToShow[j]);
   }
+  // console.log(imageUl.getElementsByTagName('li'));
 }
 
 imagesToPage();
-
-
-// var webListOne = document.getElementById('img-one');
-// var webListTwo = document.getElementById('img-two');
-// var webListThree = document.getElementById('img-three');
