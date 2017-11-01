@@ -31,6 +31,7 @@ for (var i = 0; i < imageArray.length; i++) {
   displayedImage.push(new CreateImage(imageArray[i], imageId[i]));
 }
 
+
 //this create a random num that is different then the other 2 numbers it creates.
 function randomNumGen() {
   var min = 0;
@@ -69,6 +70,8 @@ function imagesToPage() {
   if (totalcounters > 25 ) {
     removeListeners();
     document.getElementById('random-images').innerHTML = '';
+    saveTest();
+    localStorage.totalClicks = 25;
     buildTable();
   } else {
     compareNumbers();
@@ -89,14 +92,14 @@ function imagesToPage() {
       imageLi.innerHTML = '<img id="' + imageToShow[j].imageId + '"src="' + imageToShow[j].location + '">';
       imageUl.appendChild(imageLi);
       //console.log(imageLi);
-      console.log(imageToShow[j]);
+      //console.log(imageToShow[j]);
       giveListeners();
     }
   }
 }
 
-imagesToPage();
 
+imagesToPage();
 
 function giveListeners() {
   var targetImages = imageUl.getElementsByTagName('img');
@@ -114,8 +117,8 @@ function removeListeners() {
 
 function clickedTotal() {
   var clickedImageId = this.getAttribute('id');
-  console.log(clickedImageId);
-  console.log(displayedImage.length);
+  // console.log(clickedImageId);
+  // console.log(displayedImage.length);
   for (var h = 0; h < displayedImage.length; h++) {
     if (clickedImageId === displayedImage[h].imageId) {
       displayedImage[h].imageClicked++;
@@ -159,3 +162,31 @@ function buildTable() {
     options: {}
   });
 }
+
+//************************** Local Storage ************************//
+
+if (localStorage.totalClicks == 25) {
+  displayedImage = JSON.parse(localStorage.runningTest);
+  removeListeners();
+  document.getElementById('random-images').innerHTML = '';
+  buildTable();
+}
+
+var runningTest = [];
+function saveTest() {
+  if (runningTest = []) {
+    runningTest.push(JSON.stringify(displayedImage));
+    localStorage.runningTest = runningTest;
+  }
+}
+
+function loadTest() {
+  if(localStorage.runningTest) {
+    runningTest = localStorage.runningTest.split(',');
+    runningTest = JSON.parse(runningTest);
+    console.log(runningTest);
+    displayedImage = runningTest;
+  }
+};
+
+loadTest();
