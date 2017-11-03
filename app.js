@@ -1,6 +1,5 @@
 'use strict';
 
-
 var imageUl = document.getElementById('random-images');
 var totalcounters = 0;
 var previousfirst;
@@ -27,10 +26,16 @@ function CreateImage(name, id) {
 }
 
 //for loop that pushes imageArray and push it to object constructor.
-for (var i = 0; i < imageArray.length; i++) {
-  displayedImage.push(new CreateImage(imageArray[i], imageId[i]));
-}
+var generateImages = function() {
+  displayedImage = [];
+  for (var i = 0; i < imageArray.length; i++) {
+    displayedImage.push(new CreateImage(imageArray[i], imageId[i]));
+  }
+};
 
+generateImages();
+
+//******************** helper function ************************//
 
 //this create a random num that is different then the other 2 numbers it creates.
 function randomNumGen() {
@@ -43,7 +48,6 @@ function randomNumGen() {
   //console.log('random number:', randomNum);
   return randomNum;
 }
-
 
 function compareNumbers() {
   firstImageNumber = randomNumGen();
@@ -64,7 +68,20 @@ function compareNumbers() {
   //console.log('third number', previousthird);
 }
 
-//compareNumbers();
+function clickedTotal() {
+  var clickedImageId = this.getAttribute('id');
+  // console.log(clickedImageId);
+  // console.log(displayedImage.length);
+  for (var h = 0; h < displayedImage.length; h++) {
+    if (clickedImageId === displayedImage[h].imageId) {
+      displayedImage[h].imageClicked++;
+    }
+  }
+  imagesToPage();
+}
+
+
+//******************** sends images to page ************************//
 
 function imagesToPage() {
   if (totalcounters > 25 ) {
@@ -101,6 +118,8 @@ function imagesToPage() {
 
 imagesToPage();
 
+//******************** builds event listeners ************************//
+
 function giveListeners() {
   var targetImages = imageUl.getElementsByTagName('img');
   for (var y = 0; y < targetImages.length; y++) {
@@ -115,21 +134,10 @@ function removeListeners() {
   }
 }
 
-function clickedTotal() {
-  var clickedImageId = this.getAttribute('id');
-  // console.log(clickedImageId);
-  // console.log(displayedImage.length);
-  for (var h = 0; h < displayedImage.length; h++) {
-    if (clickedImageId === displayedImage[h].imageId) {
-      displayedImage[h].imageClicked++;
-    }
-  }
-  imagesToPage();
-}
-
+//******************** adds table to page ************************//
 
 function buildTable() {
-  chart = document.getElementById('myChart').style.visibility = 'visible';
+  document.getElementById('btn').style.visibility = 'visible';
   var labelName = [];
   for (var w = 0; w < displayedImage.length; w++) {
     labelName.push(displayedImage[w].name);
@@ -141,8 +149,8 @@ function buildTable() {
     dataCounts.push(displayedImage[t].imageClicked);
   }
   console.log(dataCounts);
-
   var ctx = document.getElementById('myChart').getContext('2d');
+  document.getElementById('myChart').style.visibility = 'visible';
   var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'horizontalBar',
@@ -190,3 +198,10 @@ function loadTest() {
 };
 
 loadTest();
+
+//************************** btn reset local storage ************************//
+
+function resetPage() {
+  localStorage.clear();
+  location.reload();
+}

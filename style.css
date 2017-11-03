@@ -68,3 +68,7 @@ li {
   margin: 0 auto;
   visibility: hidden;
 }
+
+#btn {
+  visibility: hidden;
+}
